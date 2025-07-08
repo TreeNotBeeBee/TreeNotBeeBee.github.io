@@ -95,14 +95,14 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 // 获取所有分类
 export async function getAllCategories(): Promise<string[]> {
   const posts = await getAllPosts()
-  const categories = [...new Set(posts.map(post => post.category).filter(Boolean))]
+  const categories = Array.from(new Set(posts.map(post => post.category).filter(Boolean)))
   return categories as string[]
 }
 
 // 获取所有标签
 export async function getAllTags(): Promise<string[]> {
   const posts = await getAllPosts()
-  const tags = [...new Set(posts.flatMap(post => post.tags || []))]
+  const tags = Array.from(new Set(posts.flatMap(post => post.tags || [])))
   return tags
 }
 
